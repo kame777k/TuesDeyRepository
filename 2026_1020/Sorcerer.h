@@ -8,7 +8,7 @@ public:
 	virtual void Showstatus();
 	virtual ~Sorcerer() = default;
 
-protected:
+private:
 	int hp;
 	int juryoku;
 };
