@@ -2,10 +2,11 @@
 class Run
 {
 private:
-	void Selection(int &input);
+	void Selection();
+	void EnemyDetection();
 	void DamageHandling();
 
-	int input;
+	int input = 0;
 public:
 	Run();
 	void Start();

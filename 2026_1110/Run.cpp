@@ -7,7 +7,7 @@ using namespace std;
 Run::Run()
 {}
 
-void Run::Selection(int &input)
+void Run::Selection()
 {
 	while (true)
 	{
@@ -20,7 +20,22 @@ void Run::Selection(int &input)
 	}
 }
 
+void Run::EnemyDetection()
+{
+	switch (input)
+	{
+	case 1:
+		break;
+	default:
+		break;
+	}
+}
 
+
+void Run::DamageHandling()
+{
+
+}
 
 
 void Run::Start()
@@ -30,7 +45,7 @@ void Run::Start()
 	unique_ptr<Enemy>enemy3;
 
 	cout << "UŒ‚‚·‚é“G‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢\n1`3\n";
-	Selection(input);
+	Selection();
 
 }
 
