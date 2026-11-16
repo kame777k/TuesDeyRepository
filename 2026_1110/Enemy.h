@@ -7,6 +7,6 @@ private:
 public:
 	Enemy();
 	void TakeDamage(int damage);
-	void ShowStatus()const;
+	bool IsAlive() const;
 	int GetHp()const { return hp; }
 };

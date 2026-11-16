@@ -10,7 +10,7 @@ void Enemy::TakeDamage(int damage)
 	if (hp < 0) hp = 0;
 }
 
-void Enemy::ShowStatus() const
+bool Enemy::IsAlive()const
 {
-	std::cout << "Enemy HP: " << hp << std::endl;
+	return hp > 0;
 }

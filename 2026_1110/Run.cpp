@@ -2,50 +2,64 @@
 #include"Enemy.h"
 #include"Config.h"
 #include<iostream>
+#include<memory>
+#include<vector>
 using namespace std;
-
-Run::Run()
-{}
-
-void Run::Selection()
-{
-	while (true)
-	{
-		cin >> input;
-		if (0 > input && input <= Config::ENEMY_NUM)
-		{
-			break;
-		}
-		cout << "“ü—Í‚ªŒë‚Á‚Ä‚¢‚Ü‚·\n";
-	}
-}
-
-void Run::EnemyDetection()
-{
-	switch (input)
-	{
-	case 1:
-		break;
-	default:
-		break;
-	}
-}
-
-
-void Run::DamageHandling()
-{
-
-}
 
 
 void Run::Start()
 {
-	unique_ptr<Enemy>enemy1 = make_unique<Enemy>();
-	unique_ptr<Enemy>enemy2;
-	unique_ptr<Enemy>enemy3;
+	
+	vector<unique_ptr<Enemy>> enemies;
 
-	cout << "UŒ‚‚·‚é“G‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢\n1`3\n";
-	Selection();
+	//“G‚ð¶¬
+	for (int  i = 0; i < Config::ENEMY_NUM; i++)
+	{
+		enemies.push_back(make_unique<Enemy>());
+	}
+	int defeatedNum = 0;
 
+	while (defeatedNum < Config::ENEMY_NUM)
+	{
+		defeatedNum = 0;
+		//“ü—Í”»’è
+		cout << "1`3‚Ì’†‚©‚ç“G‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢\n";
+		while (true)
+		{
+
+			cin >> input;
+			if (input > 0 && input <= Config::ENEMY_NUM)
+			{
+				if (!enemies[input - 1]->IsAlive())
+				{
+					cout << "‚»‚Ì“G‚Í‚·‚Å‚É“|‚³‚ê‚Ä‚¢‚Ü‚·\n";
+					continue;
+				}
+				break;
+			}
+			cout << "“ü—ÍƒGƒ‰[\nÄ“x“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n";
+		}
+
+
+		//UŒ‚ˆ—
+		enemies[input - 1]->TakeDamage(Config::ATTACK_DAMAGE);
+
+
+		//•`‰æ
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			cout << "“GF" << i + 1 << "HPF" << enemies[i]->GetHp() << endl;
+		}
+
+		for (int i = 0; i < enemies.size(); i++)
+		{
+			if (!enemies[i]->IsAlive())
+			{
+				defeatedNum++;
+			}
+		}
+	}
+	cout << "‚·‚×‚Ä‚Ì“G‚ð“|‚µ‚Ü‚µ‚½\n";
+	
 }
 
